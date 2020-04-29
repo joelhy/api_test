@@ -1,0 +1,81 @@
+openapi: 3.0.0
+info:
+  title: test1
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /hello:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: integer
+              examples: {}
+      operationId: get-hello
+  /world:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                default: '0'
+                properties:
+                  code:
+                    type: integer
+                    default: 0
+                    enum:
+                      - 0
+                      - 200
+                      - 400
+                      - 503
+                      - 401
+                    minimum: 0
+                    maximum: 999
+                  msg:
+                    type: string
+      operationId: get-world
+  /test:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    default: 0
+                    enum:
+                      - 0
+                    minimum: 0
+                    maximum: 500
+                    description: 错误代码
+                  msg:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    code: 503
+                    msg: ut officia adipisicing minim
+      operationId: get-test
+      description: ''
+components:
+  schemas: {}
