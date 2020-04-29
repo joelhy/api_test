@@ -7,7 +7,7 @@ servers:
 paths:
   /hello:
     get:
-      summary: Your GET endpoint
+      summary: hello summary
       tags: []
       responses:
         '200':
@@ -24,7 +24,7 @@ paths:
       description: this is hello
   /world:
     get:
-      summary: Your GET endpoint
+      summary: world summary
       tags: []
       responses:
         '200':
@@ -32,27 +32,12 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                default: '0'
-                properties:
-                  code:
-                    type: integer
-                    default: 0
-                    enum:
-                      - 0
-                      - 200
-                      - 400
-                      - 503
-                      - 401
-                    minimum: 0
-                    maximum: 999
-                  msg:
-                    type: string
+                $ref: '#/components/schemas/ApiResponse'
       operationId: get-world
       description: this is wolrd
   /test:
     get:
-      summary: Your GET endpoint
+      summary: test summary
       tags: []
       responses:
         '200':
@@ -63,15 +48,15 @@ paths:
                 type: object
                 properties:
                   code:
-                    type: integer
                     default: 0
+                    description: 错误代码
                     enum:
                       - 0
-                    minimum: 0
-                    maximum: 500
-                    description: 错误代码
+                    $ref: ''
                   msg:
                     type: string
+                  data:
+                    $ref: '#/components/schemas/User'
               examples:
                 example-1:
                   value:
@@ -80,4 +65,39 @@ paths:
       operationId: get-test
       description: this is test
 components:
-  schemas: {}
+  schemas:
+    User:
+      title: User
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        status:
+          type: integer
+        created_at:
+          type: string
+      description: 用户
+      x-examples:
+        example-1: {}
+    ApiResponse:
+      title: ApiResponse
+      type: object
+      x-examples:
+        example-1: {}
+      properties:
+        code:
+          type: integer
+          enum:
+            - 0
+          minimum: 0
+          maximum: 999
+        msg:
+          type: string
+        data:
+          $ref: ''
+    UserResponse:
+      $ref: '#/components/schemas/ApiResponse'
