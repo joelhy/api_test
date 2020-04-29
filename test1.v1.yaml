@@ -21,6 +21,7 @@ paths:
                   type: integer
               examples: {}
       operationId: get-hello
+      description: this is hello
   /world:
     get:
       summary: Your GET endpoint
@@ -48,6 +49,7 @@ paths:
                   msg:
                     type: string
       operationId: get-world
+      description: this is wolrd
   /test:
     get:
       summary: Your GET endpoint
@@ -76,6 +78,6 @@ paths:
                     code: 503
                     msg: ut officia adipisicing minim
       operationId: get-test
-      description: ''
+      description: this is test
 components:
   schemas: {}
